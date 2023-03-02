@@ -1,6 +1,5 @@
-# steps for installtion
+# Steps for Installation
 1.npm i
- 
 2.node index.js
 
 
@@ -10,3 +9,13 @@
 3. git add .
 4. git commit -m "first comment"
 5. git push (use VS code UI)
+
+# ADDED API'S
+1. [getuser](http://localhost:3000/api/user/getuser) --> ** get user ** from fake api and save 
+2. [seedrecord](http://localhost:3000/api/user/seedrecord?rid=20)-> **fetch number record ** and > save all records in database
+3.[cleandb](http://localhost:3000/api/user/cleandb) --> > Delete all records - `all records delete`
+
+``` Write JS code
+ function 
+```
+
