@@ -11,11 +11,11 @@
 5. git push (use VS code UI)
 
 # ADDED API'S
-1. [getuser](http://localhost:3000/api/user/getuser) --> ** get user ** from fake api and save 
+1. [getuser](http://localhost:3000/api/user/getuser) --> **get user** from fake api and save 
 
-2. [seedrecord](http://localhost:3000/api/user/seedrecord?rid=20)-> **fetch number record ** and > save all records in database
+2. [seedrecord](http://localhost:3000/api/user/seedrecord?rid=20)-> **fetch number record** and save all records in database
 
-3.[cleandb](http://localhost:3000/api/user/cleandb) --> > Delete all records - `all records delete`
+3.[cleandb](http://localhost:3000/api/user/cleandb) --> > Delete all records - `All records delete`
 
 
 > If you want to add code here
