@@ -17,7 +17,10 @@
 
 3.[cleandb](http://localhost:3000/api/user/cleandb) --> > Delete all records - `all records delete`
 
+
+> If you want to add code here
 ``` Write JS code
  function 
 ```
+
 
