@@ -1,9 +1,10 @@
 # Steps for Installation
-1.npm i
-2.node index.js
+1. npm i
+     * Install all lib
+2. node index.js
+    * Start project
 
-
-# Start next API's
+# Some GitHUB commands
 1. git init
 2. git remote add origin
 3. git add .
