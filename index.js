@@ -5,7 +5,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true, limit:"50mb"}));
     
 
-//
 require('./setup/db')()
 require("./setup/routes")(app)
 require('./setup/server')(app)
