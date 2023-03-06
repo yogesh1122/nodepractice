@@ -5,9 +5,9 @@ const { fetchFakeAPI } = require('../service/service');
 
 async function  getUserData(req,res){
 
-    const ax = await fetchFakeAPI()
+    const ax = await fetchFakeAPI() //call 3 apis
     // console.log(ax.data.results[0]);
-    const  savefkdata = await fakeAPIModel(ax.data.results[0]).save(); 
+    const  savefkdata = await fakeAPIModel(ax.data.results[0]).save();  //save own db
     res.status(200).send({data:savefkdata})
 } 
 
@@ -29,10 +29,10 @@ async function fakeDataSeed(req,res) {
 }
 
 const cleanData = async (req,res)=>{
-
     const deleteAllRecords = await fakeAPIModel.deleteMany({})
     res.status(200).send({msg:"Records Deleted Successfully", deleteAllRecords})
 }
+
 
 
 

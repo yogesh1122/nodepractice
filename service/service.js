@@ -6,4 +6,6 @@ async function fetchFakeAPI() {
     return data;
 }
 
-module.exports = { fetchFakeAPI }
+module.exports = { 
+    fetchFakeAPI
+ }
