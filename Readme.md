@@ -1,9 +1,10 @@
 
 # Steps for Installation
 
-1. npm i
+1.Download/Clone project 
+2. npm i
      * Install all lib
-2. node index.js
+3. node index.js
     * Start project
 ***
 # Some GitHUB commands
