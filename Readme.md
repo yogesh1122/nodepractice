@@ -3,9 +3,9 @@
 
 1. Download/Clone project 
 2. npm i
-     * Install all lib
+ >    * Install all lib
 3. node index.js
-    * Start project
+ >   * Start project
 ***
 # Some GitHUB commands
 1. git init
