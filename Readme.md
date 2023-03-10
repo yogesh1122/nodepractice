@@ -1,7 +1,7 @@
 
 # Steps for Installation
 
-1.Download/Clone project 
+1. Download/Clone project 
 2. npm i
      * Install all lib
 3. node index.js
