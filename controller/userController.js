@@ -1,5 +1,5 @@
 const { fakeAPIModel } = require('../model/fakeDataGenModel');
-const { fetchFakeAPI } = require('../service/service');
+const { fetchFakeAPI, getRandomNumber } = require('../service/service');
 
 
 //user Api's
@@ -12,7 +12,7 @@ async function getCityWise(req,res) {
         name:fullName,
         email:doc.email,
         dob:doc.dob,
-        city: doc["location.city"]
+        city: doc.location.city
     })
    // fakePIModel.save(doc);
   })
@@ -20,6 +20,26 @@ async function getCityWise(req,res) {
    res.status(200).send({count:temp.length,temp}) 
 }
 
+async function updateMany(req,res) {
+    // const sal = await getRandomNumber(25000,500000);
+    try {        
+    
+        const saveSal = await fakeAPIModel.find({}).then(users => {
+          const salaries = Array.from({ length: users.length }, () => Math.floor(Math.random() * 100000));
+            const updates = users.map((user, index) => ({
+              updateOne: {
+                filter: { _id: user._id },
+                update: { $set: { salary: salaries[index] } }
+              }
+            }));
+            return fakeAPIModel.bulkWrite(updates);
+          })
+        res.status(200).send({Msg:'all record updated',saveSal:saveSal.matchedCount})
+    
+    } catch (error) {
+        console.log(error);
+    }
+}
 //SEED API'S
 async function  getUserData(req,res){
 
@@ -46,7 +66,6 @@ async function fakeDataSeed(req,res) {
 
 }
 
-
 //Clean and Delete API's
 
 const cleanData = async (req,res)=>{
@@ -55,6 +74,4 @@ const cleanData = async (req,res)=>{
 }
 
 
-
-
-module.exports = { getUserData, fakeDataSeed, cleanData,getCityWise }
+module.exports = { getUserData, fakeDataSeed, cleanData,getCityWise,updateMany }

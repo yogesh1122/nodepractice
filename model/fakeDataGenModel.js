@@ -42,8 +42,8 @@ const fkmodel = new mongoose.Schema({
       medium: { type:String },
       thumbnail: { type:String }
     },
-    nat: { type:String }
-  
+    nat: { type:String },
+    salary :{  type: Number}
 
 })  
 
