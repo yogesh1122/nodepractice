@@ -1,19 +1,31 @@
 const mongoose = require('mongoose');
 
-const userModel = mongoose.model('newNode',new mongoose.Schema({
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  address: {
+    street: String,
+    city: String,
+    state: String,
+    zip: String
+  },
+  created_at: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-            Name:{type:String},
-            lastName:{type:String},
-            email:{type:String},
-            password:{type:String},
-            gender:{type:String},
-            city:{type:String},
-            country:{type:String},
-            profilePic:{type:String},
-            isVerified:{type:Boolean, default:false}
-},
-{
-            timestamps:true
-}) )
+const UserModel = mongoose.model('User', userSchema);
 
-module.exports = { userModel }
+module.exports = UserModel;
