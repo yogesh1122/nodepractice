@@ -1,5 +1,6 @@
 const { fakeAPIModel } = require('../model/fakeDataGenModel');
-const { fetchFakeAPI, getRandomNumber } = require('../service/service');
+const UserModel = require('../model/userModel');
+const { fetchFakeAPI, getRandomNumber,userCreateObj } = require('../service/service');
 
 
 //user Api's
@@ -73,20 +74,33 @@ async function fakeDataSeed(req,res) {
     }
 
     res.status(200).send({msg:`${recordArr.length} records save successfully`,recordArr})
-
-    
+ 
    } catch (error) {
     res.status(500).send({msg:'Internal server error',error})
    }
 
 }
 
+async function saveUser(req,res) {
+  let arr = []
+  const { num } = req.query
+  if(!num) return res.status(400).send({msg:"query parameter required"})
+  
+   for (let i = 0; i < num; i++) {
+    const resultObj = await  userCreateObj();
+    //console.log(resultObj);
+      let results = await UserModel(resultObj).save()
+      arr.push(results)    
+    }
+   res.status(200).send({msg:`${arr.length} records save successfully`,arr})
+}
+
 //Clean and Delete API's
 
 const cleanData = async (req,res)=>{
-    const deleteAllRecords = await fakeAPIModel.deleteMany({})
+    const deleteAllRecords = await UserModel.deleteMany({})
     res.status(200).send({msg:"Records Deleted Successfully", deleteAllRecords})
 }
 
 
-module.exports = { getUserData, fakeDataSeed, cleanData,getCityWise,updateMany }
+module.exports = { getUserData, fakeDataSeed, cleanData,getCityWise,updateMany,saveUser }
