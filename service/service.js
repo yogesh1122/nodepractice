@@ -30,12 +30,25 @@ async function userCreateObj() {
     }
      return obj;
 }
-async function productCreateObj(){
 
+async function verifyCartData(items){
+  
+  
+  // let totalPrice=0;
+  // for (const key in items) {
+  //   if (Object.hasOwnProperty.call(items, key)) {
+  //     const el = items[key];
+  //     let objprice = el.quantity * el.price;    
+  //     totalPrice = totalPrice + objprice
+  //   }
+  // }
+  
+  // excepted O/p :- 3,399.98
+  console.log(totalPrice);
 }
 
 module.exports = { 
     fetchFakeAPI,
     getRandomNumber,
-    userCreateObj
+    verifyCartData
  }

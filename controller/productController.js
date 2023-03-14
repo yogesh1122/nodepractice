@@ -1,4 +1,7 @@
+const CartModel = require("../model/cartModel");
 const ProductModel = require("../model/productModel");
+const { verifyCartData } = require("../service/service");
+
 
 module.exports.createproduct = async (req, res) => {
   try {
@@ -20,4 +23,32 @@ module.exports.createproduct = async (req, res) => {
   }
 };
 
+module.exports.addToCart = async(req,res)=>{
+   try {
+    
+    let { items } = req.body;
+    let result = verifyCartData(items) 
+    const addCart = 0// await CartModel(req.body).save()
+
+    res.status(200).send({mesg:"Cart added successful"})
+     
+  } catch (error) {
+    res.status(500).send({msg:"Internal server Error:- " ,error})
+   }
+}
+
+module.exports.cartShow = async(req,res)=>{
+    try {
+      const { id } = req.query;
+      let { items } = req.body;
+
+      console.log(items);
+      const showCart = await CartModel.find({ user_id:id })
+      
+      res.status(200).send({ msg:'cart Data here',CartData:showCart })
+
+    } catch (error) {
+      res.status(500).send({msg:"Internal server Error :- ", error})
+    }
+}
 // module.exports = { createproduct }
