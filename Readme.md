@@ -18,6 +18,10 @@
 1. [getuser](http://localhost:3000/api/user/getuser) --> **get user** from fake api and save.<br />
 2. [seedrecord](http://localhost:3000/api/user/seedrecord?rid=20)-> **fetch number record** and save all records in database.<br />
 3. [cleandb](http://localhost:3000/api/user/cleandb) --> > Delete all records - `All records delete`. <br />
+
+4. Adding Shopping API's
+5. Payment gateway 
+>     * razorpay 
 ---
 ***
 

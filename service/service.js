@@ -1,4 +1,5 @@
 const axios = require('axios');
+const ProductModel = require('../model/productModel');
 
 
 async function fetchFakeAPI() {
@@ -32,23 +33,88 @@ async function userCreateObj() {
 }
 
 async function verifyCartData(items){
-  
-  
+//Optimize code  
+let totalPrice = items.map((item) => item.quantity * item.price).reduce((acc, val) => acc + val, 0);
+return totalPrice;
+//long logic
   // let totalPrice=0;
   // for (const key in items) {
   //   if (Object.hasOwnProperty.call(items, key)) {
   //     const el = items[key];
   //     let objprice = el.quantity * el.price;    
-  //     totalPrice = totalPrice + objprice
+  //     totalPrice += objprice
   //   }
   // }
-  
-  // excepted O/p :- 3,399.98
-  console.log(totalPrice);
 }
+
+
+//Product Servicess **
+
+async function checkallproductPrice(pid) {
+  let data = []
+  await Promise.all(pid.map(async (it) => {
+    let d = await ProductModel.findOne({ _id: it })
+    data.push(d);
+  }));
+  return data;
+}
+
+function totalPrice(rs, userCart) {
+  //#region 
+   //     let totalPrice=0;
+   //     //  console.log("PID data from cart",userCart.items);
+   //     //  console.log("Rs data from DB",rs);
+   //     console.log("userCArt :-",userCart);
+   //     console.log("rs :- ", rs);
+   //     for (let i = 0; i < userCart.items.length; i++) {
+   //       const { product_id, qty } = userCart.items[i];
+   //       const product = rs.find(p => p._id === product_id); 
+   //       console.log('product',product);
+   //       if (product) {
+   //         totalPrice += (product.price * qty);
+   //       }
+   //       console.log(totalPrice);
+   //      return totalPrice; 
+   // } 
+   //#endregion 
+   // userCart and rs array as defined in the question
+   const userCartItems = userCart.items;
+
+   // create a new array by iterating over userCart items
+   const calculatedPrices = userCartItems.map((item) => {
+     const productId = item.product_id;
+
+     // find the corresponding product in the rs array
+     const product = rs.find((p) => p._id.toString() === productId.toString());
+
+     // if a matching product is found, calculate the price and return it
+     if (product) {
+       const quantity = item.quantity;
+       const price = product.price;
+       const totalPrice = quantity * price;
+
+       return { _id: product._id, totalPrice };
+     }
+
+     // if no matching product is found, return null
+     return null;
+   });
+
+   // use reduce function to sum the total price for all items
+   const totalPrice = calculatedPrices.reduce(
+     (accumulator, item) => (item ? accumulator + item.totalPrice : accumulator),
+     0
+   );
+     
+   return totalPrice.toFixed(2);
+
+ }
+
 
 module.exports = { 
     fetchFakeAPI,
     getRandomNumber,
-    verifyCartData
+    verifyCartData,
+    checkallproductPrice,
+    totalPrice
  }
